@@ -17,7 +17,7 @@ jobs:
       - name: Push to GitLab
         env:
           ACCESS_TOKEN: ${{ secrets.KTEST_GITLAB }}
-          MIRROR_URL: "git.se.informatik.uni-kiel.de/shinhyungyang/ktest.git"
+          MIRROR_URL: "gitlab.com/shinhyungyang/ktest.git"
         run: |
           # Add the GitLab remote using the oauth2 user and your access token
           git remote add mirror https://oauth2:${ACCESS_TOKEN}@${MIRROR_URL}
