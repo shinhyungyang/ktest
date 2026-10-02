@@ -32,7 +32,7 @@ jobs:
           MIRROR_URL: "git.se.informatik.uni-kiel.de/shinhyungyang/ktest.git"
         run: |
           # Add the GitLab remote using the oauth2 user and your access token
-          git remote add git-se ${GIT_SE_USERNAME}:${ACCESS_TOKEN_GIT_SE}@${MIRROR_URL}
+          git remote add git-se https://${GIT_SE_USERNAME}:${ACCESS_TOKEN_GIT_SE}@${MIRROR_URL}
           
           # Force push all branches and tags to the GitLab repository
           git push git-se main --force
