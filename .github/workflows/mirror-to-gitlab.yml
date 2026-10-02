@@ -16,11 +16,23 @@ jobs:
 
       - name: Push to GitLab
         env:
-          ACCESS_TOKEN: ${{ secrets.KTEST_GITLAB }}
+          ACCESS_TOKEN_GITLAB: ${{ secrets.KTEST_GITLAB }}
+          ACCESS_TOKEN_GIT_SE: ${{ secrets.KTEST_GIT_SE }}
           MIRROR_URL: "gitlab.com/shinhyungyang/ktest.git"
         run: |
           # Add the GitLab remote using the oauth2 user and your access token
-          git remote add mirror https://oauth2:${ACCESS_TOKEN}@${MIRROR_URL}
+          git remote add mirror https://oauth2:${ACCESS_TOKEN_GITLAB}@${MIRROR_URL}
+          
+          # Force push all branches and tags to the GitLab repository
+          git push mirror main --force
+
+      - name: Push to Git SE
+        env:
+          ACCESS_TOKEN: ${{ secrets.KTEST_GIT_SE }}
+          MIRROR_URL: "git.se.informatik.uni-kiel.de/shinhyungyang/ktest.git"
+        run: |
+          # Add the GitLab remote using the oauth2 user and your access token
+          git remote add mirror https://oauth2:${ACCESS_TOKEN_GIT_SE}@${MIRROR_URL}
           
           # Force push all branches and tags to the GitLab repository
           git push mirror main --force
